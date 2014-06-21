@@ -30,11 +30,10 @@ public class DAOSql implements IDao {
     PreparedStatement st;
     PreparedStatement stUpd;
     PreparedStatement stDel;
-    
 
     public DAOSql() {
         try {
-            st = cn.prepareStatement("Insert into clientes (c1,c2,c3,c4,c5,c6,c7) values (?,?,?,?,?,?,?)");
+            st = cn.prepareStatement("Insert into clientes (Id,nombres,apellido1,apellido2,direccion,telefono,celular,email) values (?,?,?,?,?,?,?,?)");
             stUpd = cn.prepareStatement("Update Clientes set nombres=?,apellido1=?,apellido2=?,direccion=?,telefono=?,celular=?,email=? where id =? ");
             stDel = cn.prepareStatement("Delete from clientes where id =?");
         } catch (SQLException ex) {
@@ -73,6 +72,7 @@ public class DAOSql implements IDao {
             st.setString(5, cliente.getDireccion());
             st.setString(6, cliente.getTelefono());
             st.setString(7, cliente.getCelular());
+            st.setString(8, cliente.getEmail());
             int x = st.executeUpdate();
         } catch (SQLException ex) {
         }
@@ -88,11 +88,12 @@ public class DAOSql implements IDao {
             stUpd.setString(4, cliente.getDireccion());
             stUpd.setString(5, cliente.getTelefono());
             stUpd.setString(6, cliente.getCelular());
-            stUpd.setString(7, cliente.getCodigo());
+            stUpd.setString(7, cliente.getEmail());
+            stUpd.setString(8, cliente.getCodigo());
             int x = stUpd.executeUpdate();
         } catch (Exception e) {
         }
-        
+
     }
 
     @Override
@@ -112,11 +113,11 @@ public class DAOSql implements IDao {
         ArrayList lista = null;
         try {
             stSel = cn.createStatement();
-            ResultSet rs = stSel.executeQuery("Select codigo,nombre,apellido1,apellido2 from cliente order by codigo");
-            while(rs.next()){
-                Cliente cl = new Cliente(rs.getString("Codigo"), rs.getString("nombres"), 
-                        rs.getString("apellido1"), rs.getString("Codigo"), rs.getString("Codigo"), 
-                        rs.getString("Codigo"), rs.getString("Codigo"), rs.getString("Codigo"));
+            ResultSet rs = stSel.executeQuery("Select id,nombres,apellido1,apellido2,direccion,telefono,celular,email from clientes order by id");
+            while (rs.next()) {
+                Cliente cl = new Cliente(rs.getString("id"), rs.getString("nombres"),
+                        rs.getString("apellido1"), rs.getString("apellido2"), rs.getString("direccion"),
+                        rs.getString("telefono"), rs.getString("celular"), rs.getString("email"));
                 lista.add(cl);
             }
         } catch (SQLException ex) {
@@ -126,7 +127,15 @@ public class DAOSql implements IDao {
 
     @Override
     public int conteo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int cuenta = 0;
+        try {
+            Statement stSelConteo = cn.createStatement();
+            ResultSet rs = stSelConteo.executeQuery("Select count(*) as conteo from clientes");
+            rs.next();
+            cuenta = rs.getInt("conteo");
+        } catch (Exception e) {
+        }
+        return cuenta;
     }
 
     @Override
