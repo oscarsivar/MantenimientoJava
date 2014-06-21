@@ -34,7 +34,7 @@ public class DAOSql implements IDao {
 
     public DAOSql() {
         try {
-            st = cn.prepareStatement("Insert into clientes (c1,c2,c3) values (?,?,?)");
+            st = cn.prepareStatement("Insert into clientes (c1,c2,c3,c4,c5,c6,c7) values (?,?,?,?,?,?,?)");
             stUpd = cn.prepareStatement("Update Clientes set nombres=?,apellido1=?,apellido2=?,direccion=?,telefono=?,celular=?,email=? where id =? ");
             stDel = cn.prepareStatement("Delete from clientes where id =?");
         } catch (SQLException ex) {
@@ -47,6 +47,8 @@ public class DAOSql implements IDao {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/favoritos?user=root&password=root");
+            //Statement stx = cn.createStatement();
+            //stx.execute("Insert into .....");
 
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
@@ -71,7 +73,6 @@ public class DAOSql implements IDao {
             st.setString(5, cliente.getDireccion());
             st.setString(6, cliente.getTelefono());
             st.setString(7, cliente.getCelular());
-            st.executeUpdate();
             int x = st.executeUpdate();
         } catch (SQLException ex) {
         }
@@ -88,7 +89,7 @@ public class DAOSql implements IDao {
             stUpd.setString(5, cliente.getTelefono());
             stUpd.setString(6, cliente.getCelular());
             stUpd.setString(7, cliente.getCodigo());
-            stUpd.executeUpdate();
+            int x = stUpd.executeUpdate();
         } catch (Exception e) {
         }
         
@@ -113,8 +114,8 @@ public class DAOSql implements IDao {
             stSel = cn.createStatement();
             ResultSet rs = stSel.executeQuery("Select codigo,nombre,apellido1,apellido2 from cliente order by codigo");
             while(rs.next()){
-                Cliente cl = new Cliente(rs.getString("Codigo"), rs.getString("Codigo"), 
-                        rs.getString("Codigo"), rs.getString("Codigo"), rs.getString("Codigo"), 
+                Cliente cl = new Cliente(rs.getString("Codigo"), rs.getString("nombres"), 
+                        rs.getString("apellido1"), rs.getString("Codigo"), rs.getString("Codigo"), 
                         rs.getString("Codigo"), rs.getString("Codigo"), rs.getString("Codigo"));
                 lista.add(cl);
             }

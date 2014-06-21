@@ -20,12 +20,8 @@ public class Alumno implements IParametro,Serializable {
     private String direccion;
     private String telefono;
     private String email;
+    private String codigoPostal;
 
-    @Override
-    public String toString() {
-        return "DAOFileAlumno";
-    }
-  
     public Alumno() {
     }
 
@@ -95,5 +91,14 @@ public class Alumno implements IParametro,Serializable {
         this.email = email;
     }
 
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+    
+    
     
 }

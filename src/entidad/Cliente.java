@@ -31,13 +31,14 @@ public class Cliente implements Serializable,IParametro{
     private String telefono;
     private String celular;
     private String email;
-
+    
     @Override
     public String toString() {
         return "DAOFileCliente";
     }
 
     public Cliente() {
+        Alumno alumno = new Alumno();
     }
 
     public Cliente(String codigo, String nombre, String apellido1, String apellido2, String direccion, String telefono, String celular, String email) {
