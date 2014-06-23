@@ -38,7 +38,7 @@ public class Cliente implements Serializable,IParametro{
     }
 
     public Cliente() {
-        Alumno alumno = new Alumno();
+        
     }
 
     public Cliente(String codigo, String nombre, String apellido1, String apellido2, String direccion, String telefono, String celular, String email) {
