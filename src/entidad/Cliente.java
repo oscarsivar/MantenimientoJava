@@ -51,9 +51,6 @@ public class Cliente implements Serializable,IParametro{
         this.celular = celular;
         this.email = email;
     }
-    
-    
-    
 
     public String getCodigo() {
         return codigo;
@@ -118,7 +115,11 @@ public class Cliente implements Serializable,IParametro{
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    
+    
 
+   
     
     
 }

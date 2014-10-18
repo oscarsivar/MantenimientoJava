@@ -45,6 +45,7 @@ public class ServidorDatosClientes {
                 Runnable r = new ServicioDatos(canalComunicacionconCliente, i);
                 Thread t = new Thread(r);
                 t.start();
+                
                 i++;
             }
         } catch (Exception e) {
@@ -64,6 +65,7 @@ class ServicioDatos implements Runnable {
         contador = i;
     }
 
+    @Override
     public void run() {
         Respuesta res;
         Comando cmd;
@@ -73,7 +75,7 @@ class ServicioDatos implements Runnable {
             boolean bandera=true;
             IDao daocli;
             while(bandera){
-                cmd = (Comando) in.readObject();
+                cmd = (Comando) in.readObject();      
                 String tipo = cmd.getParametro().toString();
                 DAOFactory df = new DAOFactory(tipo);
                 daocli = df.fabricarInstancia();
@@ -93,7 +95,7 @@ class ServicioDatos implements Runnable {
                     daocli.insertar(cl);
                     //daocli.desconectarse();
                     res = new Respuesta();
-                    res.setTextoRespuesta(tipo.concat(" Agregado"));
+                    res.setTextoRespuesta(tipo.concat(" Agrego datos"));
                     res.setTextoError("-");
                     res.setListaRespuesta(null);
                     out.writeObject(res);

@@ -21,6 +21,7 @@ public abstract class DAOFile {
 
     private ArrayList<IParametro> almacenDatos;
     private IFactoryAlmacen fc = getInstanciaFactory();
+    
 
     public void conectarse() {
         almacenDatos = fc.readAlmacen();
