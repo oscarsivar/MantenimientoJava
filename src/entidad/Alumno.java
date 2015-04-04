@@ -24,6 +24,11 @@ public class Alumno implements IParametro,Serializable {
 
     public Alumno() {
     }
+    
+    @Override
+    public String toString() {
+        return "DAOFileAlumno";
+    }
 
     public Alumno(String carnet, String nombres, String apellido1, String apellido2, String direccion, String telefono, String email) {
         this.carnet = carnet;

@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -36,8 +37,10 @@ public abstract class Factory implements IFactoryAlmacen{
             oos.writeObject(almacen);
             oos.flush();
             oos.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (Exception ex){
+        
         }
     }
 
@@ -48,7 +51,7 @@ public abstract class Factory implements IFactoryAlmacen{
             String sFileName = getNombre();
             fis = new FileInputStream(sFileName);
             ois = new ObjectInputStream(fis);
-            myObject = (ArrayList<IParametro>) ois.readObject();
+            myObject = (ArrayList<IParametro>) ois.readObject();    
         } catch (IOException e) {
             myObject = new ArrayList<IParametro>();
             return myObject;

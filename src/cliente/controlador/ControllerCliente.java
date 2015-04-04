@@ -36,6 +36,7 @@ public class ControllerCliente extends DefaultTableModel {
 
     public String[][] getRows() {
         ArrayList lista;
+        
         numreg = daoclientes.conteo();
         data = new String[numreg][8];
         Cliente cl;

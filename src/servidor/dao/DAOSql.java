@@ -58,13 +58,20 @@ public class DAOSql implements IDao {
 
     @Override
     public void desconectarse() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            cn.close();
+        } catch (Exception e) {
+            
+        }
+        
     }
 
     @Override
     public void insertar(IParametro par) {
         Cliente cliente = (Cliente) par;
         try {
+            
             st.setString(1, cliente.getCodigo());
             st.setString(2, cliente.getNombre());
             st.setString(3, cliente.getApellido1());

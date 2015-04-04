@@ -58,5 +58,14 @@ public class ControllerAlumno extends Controller{
         return 7;
     }
 
+    @Override
+    public String[][] getRows() {
+        
+        return super.getRows();
+        //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     
 }

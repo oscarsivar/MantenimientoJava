@@ -74,6 +74,7 @@ class ServicioDatos implements Runnable {
             ObjectInputStream in = new ObjectInputStream(canal.getInputStream());
             boolean bandera=true;
             IDao daocli;
+            
             while(bandera){
                 cmd = (Comando) in.readObject();      
                 String tipo = cmd.getParametro().toString();

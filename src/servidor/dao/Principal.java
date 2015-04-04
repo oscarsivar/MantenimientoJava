@@ -17,8 +17,7 @@ public class Principal {
 
     public static void Main(String[] args) {
         Principal p = new Principal();
-        
-        
+        DAOSql sql = new DAOSql();
         
     }
 
