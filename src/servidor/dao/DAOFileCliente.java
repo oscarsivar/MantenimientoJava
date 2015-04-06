@@ -56,6 +56,47 @@ public class DAOFileCliente extends DAOFile implements IDao, Serializable {
         return cl.getApellido2();
     }
 
+     @Override
+    public void filter(Filtro filtro, ArrayList<IParametro> copiaAlmacen2,IParametro item, int x ){
+        if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == false & filtro.isBfiltro3() == false) {
+                if (!getValorCampo1(item).equals(filtro.getValor1())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == false & filtro.isBfiltro2() == true & filtro.isBfiltro3() == false) {
+                if (!getValorCampo2(item).equals(filtro.getValor2())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == false & filtro.isBfiltro2() == false & filtro.isBfiltro3() == true) {
+                if (!getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == true & filtro.isBfiltro3() == false) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo2(item).equals(filtro.getValor2())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (!filtro.isBfiltro1() == false & filtro.isBfiltro2() == true & filtro.isBfiltro3() == true) {
+                if (!getValorCampo2(item).equals(filtro.getValor2()) && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == false & filtro.isBfiltro3() == true) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == true & filtro.isBfiltro3() == true) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo2(item).equals(filtro.getValor2())
+                        && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            }
+        
+    }
     
 
 }

@@ -4,6 +4,7 @@
  */
 package servidor.dao;
 
+import entidad.Filtro;
 import entidad.Vehiculo;
 import interfaz.IDao;
 import interfaz.IFactoryAlmacen;
@@ -50,6 +51,48 @@ public class DAOFileVehiculo extends DAOFile implements IDao, Serializable {
     @Override
     public String getValorCampo3(IParametro item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    public void filter(Filtro filtro, ArrayList<IParametro> copiaAlmacen2,IParametro item, int x ){
+        if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == false & filtro.isBfiltro3() == false) {
+                if (!getValorCampo1(item).equals(filtro.getValor1())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == false & filtro.isBfiltro2() == true & filtro.isBfiltro3() == false) {
+                if (!getValorCampo2(item).equals(filtro.getValor2())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == false & filtro.isBfiltro2() == false & filtro.isBfiltro3() == true) {
+                if (!getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == true & filtro.isBfiltro3() == false) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo2(item).equals(filtro.getValor2())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (!filtro.isBfiltro1() == false & filtro.isBfiltro2() == true & filtro.isBfiltro3() == true) {
+                if (!getValorCampo2(item).equals(filtro.getValor2()) && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == false & filtro.isBfiltro3() == true) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            } else if (filtro.isBfiltro1() == true & filtro.isBfiltro2() == true & filtro.isBfiltro3() == true) {
+                if (!getValorCampo1(item).equals(filtro.getValor1()) && !getValorCampo2(item).equals(filtro.getValor2())
+                        && !getValorCampo3(item).equals(filtro.getValor3())) {
+                    copiaAlmacen2.remove(x);
+                    x--;
+                }
+            }
+        
     }
 
    
